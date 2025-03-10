@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { assets } from "../assets/assets";
+import { AppContext } from "../context/AppContext";
 
 const Banner = () => {
+  const { removeBg } = useContext(AppContext);
   return (
     <div className="flex flex-col md:flex-row items-center justify-between gap-8 px-4 max-w-6xl mx-auto">
       {/* left side */}
@@ -19,7 +21,13 @@ const Banner = () => {
           <br className="hidden md:block" /> background-free version.
         </p>
         <div className="mt-6 flex justify-center md:justify-start">
-          <input className="hidden" type="file" name="" id="img" />
+          <input
+            onChange={(e) => removeBg(e.target.files[0])}
+            className="hidden"
+            type="file"
+            accept="image/*"
+            id="img"
+          />
           <label
             className="bg-gradient-to-r cursor-pointer from-violet-600 to-fuchsia-500 w-56 rounded-full text-white px-4 py-2 flex justify-center items-center gap-2 hover:scale-105 transition-all duration-500"
             htmlFor="img"
